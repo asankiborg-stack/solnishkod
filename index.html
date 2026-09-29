@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solnishkod | Портфолио</title>
+    <style>
+        /* Анимированный переливающийся фон */
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #0056b3, #0080ff, #8a2be2, #ff1493);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        header span {
+            color: #00ffcc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Стиль плиток под Windows 8.1 / Metro UI */
+        .metro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tile {
+            background: rgba(0, 120, 215, 0.85);
+            padding: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 160px;
+        }
+
+        .tile:hover {
+            transform: scale(1.03);
+            border-color: #ffffff;
+            background: rgba(0, 130, 240, 0.95);
+        }
+
+        .tile.wide {
+            grid-column: span 2;
+        }
+
+        .tile.purple { background: rgba(104, 33, 122, 0.85); }
+        .tile.purple:hover { background: rgba(120, 40, 140, 0.95); }
+
+        .tile.dark { background: rgba(30, 30, 30, 0.85); }
+        .tile.dark:hover { background: rgba(45, 45, 45, 0.95); }
+
+        .tile.green { background: rgba(16, 124, 65, 0.85); }
+        .tile.green:hover { background: rgba(20, 150, 80, 0.95); }
+
+        .tile h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .tile p {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        /* Секция контента при переключении */
+        .content-section {
+            display: none;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            background: #ffffff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .content-section h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .content-section p, .content-section ul {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .content-section ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        a.tg-link {
+            color: #00ffcc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a.tg-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Solnishkod <span>// Start Page</span></h1>
+        <p>Telegram: <a href="https://t.me/Solnishkod" class="tg-link" target="_blank">@Solnishkod</a></p>
+    </header>
+
+    <div class="container">
+        <!-- Главное меню (Плитки в стиле Windows 8.1) -->
+        <div id="main-menu" class="metro-grid">
+            <div class="tile wide" onclick="openSection('about')">
+                <h3>👤 Обо мне</h3>
+                <p>Кто я, начинающий разработчик и энтузиаст технологий.</p>
+            </div>
+            <div class="tile purple" onclick="openSection('skills')">
+                <h3>⚡ Навыки</h3>
+                <p>Что я уже умею и чему учусь прямо сейчас.</p>
+            </div>
+            <div class="tile dark" onclick="openSection('projects')">
+                <h3>💻 Проекты</h3>
+                <p>Мои сборки, эксперименты, сайты и скрипты.</p>
+            </div>
+            <div class="tile green" onclick="openSection('setup')">
+                <h3>🛠️ Мое железо</h3>
+                <p>На чем я работаю и ковыряюсь.</p>
+            </div>
+            <div class="tile wide purple" onclick="openSection('contacts')">
+                <h3>📞 Контакты и связь</h3>
+                <p>Как связаться со мной в Telegram и следить за обновлениями.</p>
+            </div>
+        </div>
+
+        <!-- Вкладка: О мне -->
+        <div id="about" class="content-section">
+            <button class="back-btn" onclick="closeSections()">← Назад к плиткам</button>
+            <h2>Обо мне</h2>
+            <p>Привет! Меня зовут автор канала/профиля <strong>Solnishkod</strong>. Я начинающий специалист, который активно изучает программирование, веб-разработку, устройство компьютеров и операционных систем.</p>
+            <p>Мне нравится создавать вещи своими руками, ковыряться в софте, настраивать кастомные интерфейсы и пробовать новые технологии.</p>
+        </div>
+
+        <!-- Вкладка: Навыки -->
+        <div id="skills" class="content-section">
+            <button class="back-btn" onclick="closeSections()">← Назад к плиткам</button>
+            <h2>Мои навыки (Путь новичка)</h2>
+            <p>Я только развиваюсь в IT-сфере, но уже успел освоить:</p>
+            <ul>
+                <li><strong>Веб-разработка:</strong> Базовый HTML5, CSS3, адаптивная верстка и интерактивные элементы на JavaScript.</li>
+                <li><strong>Работа с железом:</strong> Сборка ПК, диагностика комплектующих, пайка и ремонт мелкой электроники.</li>
+                <li><strong>Операционные системы:</strong> Установка и настройка Windows (от XP до 11), основы работы с Linux.</li>
+                <li><strong>Сети:</strong> Настройка базовых локальных сетей и эксперименты с удаленным доступом.</li>
+            </ul>
+        </div>
+
+        <!-- Вкладка: Проекты -->
+        <div id="projects" class="content-section">
+            <button class="back-btn" onclick="closeSections()">← Назад к плиткам</button>
+            <h2>Мои проекты</h2>
+            <p>Здесь собраны мои основные работы и эксперименты:</p>
+            <ul>
+                <li>Сайты-визитки и интерактивные страницы с уникальным дизайном.</li>
+                <li>Скрипты и пользовательские расширения (например, для изменения интерфейсов сайтов).</li>
+                <li>Реанимация старого железа, создание локальных серверов и медиа-архивов.</li>
+                <li>Этот самый сайт-портфолио в стиле Windows 8.1!</li>
+            </ul>
+        </div>
+
+        <!-- Вкладка: Железо -->
+        <div id="setup" class="content-section">
+            <button class="back-btn" onclick="closeSections()">← Назад к плиткам</button>
+            <h2>Мое железо и инструмент</h2>
+            <p>Интерьер моей «лаборатории» включает:</p>
+            <ul>
+                <li>Платформы ПК на базе разных поколений процессоров (от старых LGA 775 / AM2 до LGA 1155).</li>
+                <li>Паяльное оборудование для мелкого ремонта техники (замена портов, резисторов, ремонт плат).</li>
+                <li>Коллекция старых смартфонов, ноутбуков и жестких дисков под эксперименты с софтом.</li>
+            </ul>
+        </div>
+
+        <!-- Вкладка: Контакты -->
+        <div id="contacts" class="content-section">
+            <button class="back-btn" onclick="closeSections()">← Назад к плиткам</button>
+            <h2>Контакты</h2>
+            <p>Самый лучший способ связаться со мной — написать в Telegram:</p>
+            <p>👉 <a href="https://t.me/Solnishkod" class="tg-link" target="_blank">@Solnishkod</a></p>
+            <p>Следи за обновлениями, дальше будет еще больше крутых проектов!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Solnishkod. Сделано с душой и кодом.</p>
+    </footer>
+
+    <script>
+        function openSection(sectionId) {
+            // Скрываем главное меню с плитками
+            document.getElementById('main-menu').style.display = 'none';
+            
+            // Скрываем все секции
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // Показываем нужную секцию
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function closeSections() {
+            // Скрываем все секции
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // Возвращаем плитки главного меню
+            document.getElementById('main-menu').style.display = 'grid';
+        }
+    </script>
+</body>
+</html>
